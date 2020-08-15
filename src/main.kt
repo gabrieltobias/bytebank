@@ -4,18 +4,12 @@ fun main() {
     val contaGabriel = Conta()
     contaGabriel.titular = "Gabriel"
     contaGabriel.numero = 100
-    contaGabriel.saldo = 20.0
-//    println(contaGabriel.titular)
-//    println(contaGabriel.numero)
-//    println(contaGabriel.saldo)
+    contaGabriel.saldo = 100.0
     //Criando conta 2
     val contaFran = Conta()
     contaFran.titular = "Fran"
     contaFran.numero = 200
-    contaFran.saldo = 30.0
-//    println(contaFran.titular)
-//    println(contaFran.numero)
-//    println(contaFran.saldo)
+    contaFran.saldo = 100.0
 
     //Mostrando o saldo atual
     println("Saldo Gabriel: ${contaGabriel.saldo}")
@@ -27,11 +21,22 @@ fun main() {
 //    println("Conta Fran: ${contaFran.saldo}")
 
     //Sacando
-    println("Sacando na conta do Gabriel")
-    contaGabriel.saca(20.0)
+//    println("Sacando na conta do Gabriel")
+//    contaGabriel.saca(20.0)
+//    println(contaGabriel.saldo)
+//    println("Sacando na conta da Fran")
+//    contaFran.saca(100.0)
+//    println(contaFran.saldo)
+
+    //Transferindo
+    println("Transferencia Fran para Gabriel")
+    if(contaFran.transfere(400.0,contaGabriel)){
+        println("Trânsferencia feita com sucesso!")
+    }else{
+        println("Falha na trânsferencia")
+    }
+
     println(contaGabriel.saldo)
-    println("Sacando na conta da Fran")
-    contaFran.saca(100.0)
     println(contaFran.saldo)
 }
 
@@ -47,10 +52,19 @@ class Conta {
         this.saldo += valor
     }
 
-    fun saca(valor: Double){
-        if(this.saldo >= valor){
+    fun saca(valor: Double) {
+        if (this.saldo >= valor) {
             saldo -= valor
         }
+    }
+
+    fun transfere(valor: Double, contaDestino: Conta): Boolean {
+        if (this.saldo >= valor) {
+            this.saldo -= valor
+            contaDestino.saldo += valor
+            return true
+        }
+        return false
     }
 }
 
