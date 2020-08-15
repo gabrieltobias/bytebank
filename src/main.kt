@@ -17,16 +17,24 @@ fun main() {
 //    println(contaFran.numero)
 //    println(contaFran.saldo)
 
+    //Mostrando o saldo atual
+    println("Saldo Gabriel: ${contaGabriel.saldo}")
+    println("Saldo Fran: ${contaFran.saldo}")
     //Depositando
-   deposita(contaGabriel, 50.0)
-    println("Conta Gabriel: ${contaGabriel.saldo}")
-    deposita(contaFran, 100.0)
-    println("Conta Fran: ${contaFran.saldo}")
+//    contaGabriel.deposita(50.0)
+//    println("Conta Gabriel: ${contaGabriel.saldo}")
+//    contaFran.deposita(100.0)
+//    println("Conta Fran: ${contaFran.saldo}")
+
+    //Sacando
+    println("Sacando na conta do Gabriel")
+    contaGabriel.saca(20.0)
+    println(contaGabriel.saldo)
+    println("Sacando na conta da Fran")
+    contaFran.saca(100.0)
+    println(contaFran.saldo)
 }
 
-fun deposita(conta: Conta, valor: Double){
-    conta.saldo += valor
-}
 
 //Criando uma classe
 
@@ -34,8 +42,19 @@ class Conta {
     var titular = "";
     var numero = 0;
     var saldo = 0.0;
+
+    fun deposita(valor: Double) {
+        this.saldo += valor
+    }
+
+    fun saca(valor: Double){
+        if(this.saldo >= valor){
+            saldo -= valor
+        }
+    }
 }
-fun testaReferenciasCopias(){
+
+fun testaReferenciasCopias() {
     //Referenciando um objeto
     val contaJoao = Conta()
     contaJoao.titular = "João"
@@ -45,6 +64,7 @@ fun testaReferenciasCopias(){
     println(contaJoao)
     println(contaMaria)
 }
+
 fun testaLacos() {
     var i = 0
     while (i < 5) {
