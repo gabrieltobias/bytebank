@@ -4,16 +4,16 @@ fun main() {
     val contaGabriel = Conta()
     contaGabriel.titular = "Gabriel"
     contaGabriel.numero = 100
-    contaGabriel.saldo = 100.0
+    contaGabriel.setSaldo(100.0)
     //Criando conta 2
     val contaFran = Conta()
     contaFran.titular = "Fran"
     contaFran.numero = 200
-    contaFran.saldo = 100.0
+    contaFran.setSaldo(100.0)
 
     //Mostrando o saldo atual
-    println("Saldo Gabriel: ${contaGabriel.saldo}")
-    println("Saldo Fran: ${contaFran.saldo}")
+    println("Saldo Gabriel: ${contaGabriel.getSaldo()}")
+    println("Saldo Fran: ${contaFran.getSaldo()}")
     //Depositando
 //    contaGabriel.deposita(50.0)
 //    println("Conta Gabriel: ${contaGabriel.saldo}")
@@ -29,15 +29,15 @@ fun main() {
 //    println(contaFran.saldo)
 
     //Transferindo
-    println("Transferencia Fran para Gabriel")
-    if(contaFran.transfere(400.0,contaGabriel)){
-        println("Trânsferencia feita com sucesso!")
-    }else{
-        println("Falha na trânsferencia")
-    }
-
-    println(contaGabriel.saldo)
-    println(contaFran.saldo)
+//    println("Transferencia Fran para Gabriel")
+//    if(contaFran.transfere(400.0,contaGabriel)){
+//        println("Trânsferencia feita com sucesso!")
+//    }else{
+//        println("Falha na trânsferencia")
+//    }
+//
+//    println(contaGabriel.saldo)
+//    println(contaFran.saldo)
 }
 
 
@@ -46,7 +46,7 @@ fun main() {
 class Conta {
     var titular = "";
     var numero = 0;
-    var saldo = 0.0;
+    private var saldo = 0.0;
 
     fun deposita(valor: Double) {
         this.saldo += valor
@@ -61,10 +61,19 @@ class Conta {
     fun transfere(valor: Double, contaDestino: Conta): Boolean {
         if (this.saldo >= valor) {
             this.saldo -= valor
-            contaDestino.saldo += valor
+            contaDestino.deposita(valor)
             return true
         }
         return false
+    }
+
+    fun getSaldo(): Double{
+        return saldo
+    }
+    fun setSaldo(valor: Double){
+        if(valor > 0){
+            saldo = valor
+        }
     }
 }
 
