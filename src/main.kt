@@ -17,17 +17,15 @@ fun main() {
 //    println(contaFran.numero)
 //    println(contaFran.saldo)
 
-    //Referenciando um objeto
-    val contaJoao = Conta()
-    contaJoao.titular = "João"
-    var contaMaria = Conta()
-    contaMaria.titular = "Maria"
+    //Depositando
+   deposita(contaGabriel, 50.0)
+    println("Conta Gabriel: ${contaGabriel.saldo}")
+    deposita(contaFran, 100.0)
+    println("Conta Fran: ${contaFran.saldo}")
+}
 
-    println(contaJoao)
-    println(contaMaria)
-
-
-
+fun deposita(conta: Conta, valor: Double){
+    conta.saldo += valor
 }
 
 //Criando uma classe
@@ -37,7 +35,16 @@ class Conta {
     var numero = 0;
     var saldo = 0.0;
 }
+fun testaReferenciasCopias(){
+    //Referenciando um objeto
+    val contaJoao = Conta()
+    contaJoao.titular = "João"
+    var contaMaria = Conta()
+    contaMaria.titular = "Maria"
 
+    println(contaJoao)
+    println(contaMaria)
+}
 fun testaLacos() {
     var i = 0
     while (i < 5) {
