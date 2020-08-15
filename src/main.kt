@@ -5,17 +5,28 @@ fun main() {
     contaGabriel.titular = "Gabriel"
     contaGabriel.numero = 100
     contaGabriel.saldo = 20.0
-    println(contaGabriel.titular)
-    println(contaGabriel.numero)
-    println(contaGabriel.saldo)
+//    println(contaGabriel.titular)
+//    println(contaGabriel.numero)
+//    println(contaGabriel.saldo)
     //Criando conta 2
     val contaFran = Conta()
     contaFran.titular = "Fran"
     contaFran.numero = 200
     contaFran.saldo = 30.0
-    println(contaFran.titular)
-    println(contaFran.numero)
-    println(contaFran.saldo)
+//    println(contaFran.titular)
+//    println(contaFran.numero)
+//    println(contaFran.saldo)
+
+    //Referenciando um objeto
+    val contaJoao = Conta()
+    contaJoao.titular = "João"
+    var contaMaria = Conta()
+    contaMaria.titular = "Maria"
+
+    println(contaJoao)
+    println(contaMaria)
+
+
 
 }
 
@@ -27,7 +38,7 @@ class Conta {
     var saldo = 0.0;
 }
 
-fun testaLacos(){
+fun testaLacos() {
     var i = 0
     while (i < 5) {
 
