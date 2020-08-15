@@ -1,19 +1,15 @@
 fun main() {
-    println("Bem vindo ao ByteBank")
-    //Criando conta 1
-    val contaGabriel = Conta()
-    contaGabriel.titular = "Gabriel"
-    contaGabriel.numero = 100
-    contaGabriel.setSaldo(100.0)
-    //Criando conta 2
-    val contaFran = Conta()
-    contaFran.titular = "Fran"
-    contaFran.numero = 200
-    contaFran.setSaldo(100.0)
+    println("Bem vindo ao ByteBank!")
+
+    val contaGabriel = Conta("Gabriel", 1000)
+    contaGabriel.deposita(100.0)
+
+    val contaFran = Conta("Fran", 2000)
+    contaFran.deposita(100.0)
 
     //Mostrando o saldo atual
-    println("Saldo Gabriel: ${contaGabriel.getSaldo()}")
-    println("Saldo Fran: ${contaFran.getSaldo()}")
+    println("Saldo Gabriel: ${contaGabriel.saldo}")
+    println("Saldo Fran: ${contaFran.saldo}")
     //Depositando
 //    contaGabriel.deposita(50.0)
 //    println("Conta Gabriel: ${contaGabriel.saldo}")
@@ -43,13 +39,18 @@ fun main() {
 
 //Criando uma classe
 
-class Conta {
-    var titular = "";
-    var numero = 0;
-    private var saldo = 0.0;
+class Conta(
+        val titular: String,
+        val numero: Int
+) {
+    var saldo = 0.0
+        private set
+
 
     fun deposita(valor: Double) {
-        this.saldo += valor
+        if (valor > 0) {
+            this.saldo += valor
+        }
     }
 
     fun saca(valor: Double) {
@@ -67,22 +68,13 @@ class Conta {
         return false
     }
 
-    fun getSaldo(): Double{
-        return saldo
-    }
-    fun setSaldo(valor: Double){
-        if(valor > 0){
-            saldo = valor
-        }
-    }
+
 }
 
 fun testaReferenciasCopias() {
     //Referenciando um objeto
-    val contaJoao = Conta()
-    contaJoao.titular = "João"
-    var contaMaria = Conta()
-    contaMaria.titular = "Maria"
+    val contaJoao = Conta(titular = "João", numero = 1100)
+    var contaMaria = Conta(titular = "Maria",numero =  2200)
 
     println(contaJoao)
     println(contaMaria)
